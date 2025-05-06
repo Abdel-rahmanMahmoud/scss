@@ -1,0 +1,27 @@
+$num: 2;
+$start: 100;
+
+@function double($size) {
+  @return $size * $num;
+}
+
+@for $i from 1 through 5 {
+  .box-#{$start} {
+    width: $start * 1px;
+    height: double($start) * 1px;
+  }
+  $start: double($start);
+}
+@function get-total($numbers...) {
+    $total: 0;
+    @each $number in $numbers {
+      $total: $total + $number;
+    }
+    @return $total;
+  }
+  
+  .box {
+    top: get-total(100, 50, 20);
+    right: get-total(100, 50);
+  }
+  

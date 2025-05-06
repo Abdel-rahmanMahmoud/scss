@@ -1,0 +1,95 @@
+$main: "school";
+$child: "box";
+$language: "en"; // English
+$gap: 20px;
+
+
+  .school {
+    padding: #{$gap};
+
+    @if $language == "en" {
+        direction: ltr;
+    }
+    @else if $language == "ar"{
+        direction: rtl;       
+    }
+
+    margin-left:#{$gap};
+    
+    .school-box {
+    padding: #{$gap / 2};
+}
+    &:hover .school-box {
+    background-color: #eee;
+    }
+}
+
+// ============== #-2
+
+// SASS Code
+$main-color: red;
+$alt-color: blue;
+
+/* Theme Version: 1.0 */
+/* Website Theme Main Color Is: #{$main-color} */
+/* Website Theme Alternate Color Is: #{$alt-color} */
+
+// ============== #-3
+
+// SASS Code
+$number: 10;
+$number: 8;
+$number: 5;
+$number: 3;
+
+@if $number > 8 {
+    .class {
+        color: blue;
+    } 
+    }
+@else if $number > 5{
+    .class {
+        color: green;
+    } }
+@else {
+        .class {
+            color: red;
+        }}
+
+
+// ============== #-4
+// SASS Code
+$number: 10;
+$color: red;
+$theme: light;
+
+// Write If Condition Code Here
+
+// SASS Code
+$number: 10;
+$color: green;
+$theme: light;
+
+// Write If Condition Code Here
+@if $number > 5 and $color == green and  $theme != dark {
+.class1 {
+    color: $color;
+}
+}
+
+// ============== #-5
+
+// ScSS Code
+$number: 10;
+$number: 9;
+$number: 8;
+$number: 10;
+
+@if $number > 8 {
+  .box-#{$number} {
+    background-color: #EEE;
+    @if $number != 9 {
+      text-align: center;
+    }
+  }
+}

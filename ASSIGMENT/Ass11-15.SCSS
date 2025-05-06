@@ -1,0 +1,135 @@
+// ASS #-1
+@mixin arrow($direction){
+    content: "";
+    position: absolute;
+    border: 20px solid transparent;
+@if $direction == "top"{
+    left: 50%;
+    transform: translateX(-50%);
+    top: -40px;
+    border-bottom-color: red;
+}
+@if $direction == "right"{
+    top: 50%;
+    transform: translateY(-50%);
+    right: -40px;
+    border-left-color: red;
+}
+@if $direction == "bottom"{
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -40px;
+    border-top-color: red;
+}
+@if $direction == "left"{
+    top: 50%;
+    transform: translateY(-50%);
+    left: -40px;
+    border-right-color: red;
+  }
+}
+
+.element {
+    &:before {
+      @include arrow("bottom");
+    }
+  }
+
+// ASS #- 2
+
+$colmnsNumbers: 16;
+@for $i from 1 through $colmnsNumbers {
+    .col-#{$i} {
+        width:percentage($i / $colmnsNumbers);
+      }
+}
+// ASS #- 3
+
+$names:
+  "books" 20px red 18,
+  "games" 30px green 18,
+  "dvds" 20px blue;
+
+@each $name , $padding ,$color ,$fontSize in $names {
+    .#{$name} {
+        padding: $padding;
+        @if $fontSize {
+            font-size: $fontSize;
+        }
+        @else  {
+            font-size: 16px;
+        } 
+        border-bottom: 2px solid $color;
+        color: #444;
+    }
+}
+
+// ASS #- 4
+$start: 1;
+
+@while $start <= 5 {
+  .width-#{$start * 100} {
+    width: $start * 100px;
+    height: $start * 100px;
+    border-radius: $start * 50px;
+  }
+  $start: $start + 1;
+}
+// ASS #- 5
+$start: 1;
+
+@for $i from $start through 5 {
+  .width-#{$i * 100} {
+    width: $start * 100px;
+    height: $i * 100px;
+    border-radius: $i * 50px;
+  }
+  $i: $i + 1;
+}
+// ASS #- 6
+@mixin placeholder {
+    &.placeholder {
+      @content;
+    }
+    &::-moz-placeholder {
+      @content;
+    }
+    &::-webkit-input-placeholder {
+      @content;
+    }
+    &:-ms-input-placeholder {
+      @content;
+    }
+    &::-moz-placeholder {
+      @content;
+    }
+  }
+  
+  // Using
+  textarea {
+    @include placeholder {
+      color: #777;
+    }
+  }
+
+// ASS #- 7
+
+@mixin flex-center($width){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @if $width  {
+        width: $width;
+    }@else {
+        width: 600px;
+    }
+}
+
+// Using
+.box-one {
+    @include flex-center(400px);
+  }
+  .box-two {
+    @include flex-center;
+  }
+  
